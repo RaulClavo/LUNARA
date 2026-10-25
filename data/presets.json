@@ -1,0 +1,9 @@
+[
+  { "name": "Ecuador (Cara Visible)", "lat": 0, "lon": 0, "alt": 0, "date": "2026-10-05T12:00" },
+  { "name": "Apollo 11 (Mar de la Tranquilidad)", "lat": 0.67, "lon": 23.47, "alt": 0, "date": "2026-10-05T12:00" },
+  { "name": "Polo Sur (Cresta Shackleton - Luz)", "lat": -89.5, "lon": 0, "alt": 0, "date": "2026-10-05T12:00" },
+  { "name": "Polo Norte (Noche lunar)", "lat": 89.5, "lon": 0, "alt": 0, "date": "2026-10-05T12:00" },
+  { "name": "Marius Hills (Tubo de Lava)", "lat": 14.0, "lon": -56.0, "alt": 0, "date": "2026-10-05T12:00" },
+  { "name": "Cara Oculta (Sin línea de visión)", "lat": 0, "lon": 180, "alt": 0, "date": "2026-10-05T12:00" },
+  { "name": "Monte Huygens (El más alto)", "lat": 19.9, "lon": -2.9, "alt": 5.5, "date": "2026-10-05T12:00" }
+]

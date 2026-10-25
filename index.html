@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LUNARA</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+  <main>
+    <header>
+      <h1>LUNARA</h1>
+      <p>Centro de Control y Simulación de Superficie Lunar</p>
+    </header>
+
+    <div class="dashboard">
+      <section class="panel form-panel">
+        <h2>Parámetros de Simulación</h2>
+        
+        <div class="preset-group">
+          <span>Cargar zona de aterrizaje</span>
+          <select id="preset" class="preset-select">
+            <option value="">-- Selecciona un preset --</option>
+          </select>
+        </div>
+
+        <form id="form">
+          <div class="form-row">
+            <label>Latitud
+              <input id="lat" type="number" step="any" value="0" required>
+            </label>
+            <label>Longitud
+              <input id="lon" type="number" step="any" value="0" required>
+            </label>
+          </div>
+          <div class="form-row">
+            <label>Altitud (km)
+              <input id="alt" type="number" step="any" value="0" required>
+            </label>
+            <label>Fecha (UTC+2)
+              <input id="date" type="datetime-local" value="2026-10-05T12:00" required>
+            </label>
+          </div>
+          <button type="submit" id="btn" disabled>Cargando datos...</button>
+        </form>
+      </section>
+
+      <section class="panel results-panel">
+        <h2>Telemetría de Superficie (24h)</h2>
+        
+        <div id="summary" class="summary-grid">
+          <p class="placeholder">Calculando visibilidad de astros...</p>
+        </div>
+
+        <div id="temp-summary" class="temp-summary">
+          <p class="placeholder">Esperando cálculo térmico...</p>
+        </div>
+      </section>
+    </div>
+
+    <section class="panel chart-panel">
+      <h2>Órbita Aparente de los Astros</h2>
+      <div class="chart-container">
+        <canvas id="plot" width="1000" height="300"></canvas>
+      </div>
+    </section>
+
+    <section class="panel search-panel">
+      <h2>🔍 Explorador de Zonas Habitables</h2>
+      <p class="helper-text">LUNARA buscará coordenadas que cumplan con tus requisitos de energía, comunicaciones y temperatura.</p>
+      <form id="searchForm" class="search-form">
+        <label>Horas Sol (Energía)
+          <input type="number" id="minSun" value="12" min="0" max="24" step="1">
+        </label>
+        <label>Horas Tierra (Comms)
+          <input type="number" id="minEarth" value="12" min="0" max="24" step="1">
+        </label>
+        <label>Temp. Mínima (°C)
+          <input type="number" id="minTemp" value="-50" step="10">
+        </label>
+        <label>Temp. Máxima (°C)
+          <input type="number" id="maxTemp" value="50" step="10">
+        </label>
+        <button type="submit" id="btnSearch">Buscar Zonas</button>
+      </form>
+      <div id="searchResults" class="search-grid"></div>
+    </section>
+  </main>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
