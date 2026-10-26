@@ -5,6 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>LUNARA</title>
   <link rel="stylesheet" href="css/main.css">
+  
+  <!-- IMPORTMAP PARA THREE.JS -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"
+    }
+  }
+  </script>
 </head>
 <body>
   <main>
@@ -38,7 +47,7 @@
               <input id="alt" type="number" step="any" value="0" required>
             </label>
             <label>Fecha (UTC+2)
-              <input id="date" type="datetime-local" value="2026-10-05T12:00" required>
+              <input id="date" type="datetime-local" required>
             </label>
           </div>
           <button type="submit" id="btn" disabled>Cargando datos...</button>
@@ -65,6 +74,12 @@
       </div>
     </section>
 
+    <!-- NUEVA SECCIÓN SKY DOME -->
+    <section class="panel skydome-panel">
+      <h2>Vista desde la Superficie (Sky Dome 3D)</h2>
+      <div id="skydome" class="skydome-container"></div>
+    </section>
+
     <section class="panel search-panel">
       <h2>🔍 Explorador de Zonas Habitables</h2>
       <p class="helper-text">LUNARA buscará coordenadas que cumplan con tus requisitos de energía, comunicaciones y temperatura.</p>
@@ -87,6 +102,7 @@
     </section>
   </main>
 
-  <script src="js/main.js"></script>
+  <script type="module" src="js/skydome.js"></script>
+  <script type="module" src="js/main.js"></script>
 </body>
 </html>

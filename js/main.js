@@ -1,3 +1,5 @@
+import { initSkyDome, updateSkyDome } from './skydome.js';
+
 const J2000_MS = Date.UTC(2000, 0, 1, 12, 0, 0);
 const R_MOON_KM = 1737.4;
 const C_KM_S = 299792.458;
@@ -123,6 +125,7 @@ function computeWindows(lat, lon, alt, startISO, hours = 24) {
       sun_az: sunData.az,
       sun_dist: sunData.dist,
       earth_el: earthData.el,
+      earth_az: earthData.az,
       earth_dist: earthData.dist,
       phase: interp(et, "phase"),
       sub_lat: interp(et, "sub_lat"),
@@ -306,15 +309,12 @@ form.addEventListener("submit", (e) => {
   const dateOnly = dateRaw.split("T")[0];
   const dateMidnight = new Date(dateOnly + "T00:00:00+02:00").toISOString();
 
-  // 1. Calculamos la ventana exacta (para el gráfico y la elevación)
   const rows = computeWindows(lat, lon, alt, dateExact);
   const stats = extractEvents(rows);
 
-  // 2. Calculamos el día natural completo (para horas y temperaturas)
   const fullDayRows = computeWindows(lat, lon, alt, dateMidnight);
   const fullDayStats = extractEvents(fullDayRows);
 
-  // 3. Mezclamos los datos: horas y temperaturas del día natural, elevaciones de la hora exacta
   stats.sun.visible_mins = fullDayStats.sun.visible_mins;
   stats.earth.visible_mins = fullDayStats.earth.visible_mins;
   stats.sun.max_temp = fullDayStats.sun.max_temp;
@@ -323,6 +323,10 @@ form.addEventListener("submit", (e) => {
   drawPlot(rows);
   renderSummary(stats, rows, lat, lon);
   renderTemps(stats);
+  
+  const sample = rows[0];
+  initSkyDome(sample.sun_el, sample.sun_az, sample.earth_el, sample.earth_az);
+  updateSkyDome(sample.sun_el, sample.sun_az, sample.earth_el, sample.earth_az);
 });
 
 searchForm.addEventListener("submit", (e) => {
