@@ -75,7 +75,6 @@ export function initSkyDome(initialSunEl, initialSunAz, initialEarthEl, initialE
   ground.position.y = -1;
   scene.add(ground);
 
-  // Puntos cardinales
   addCardinal('N', 0, 0xff5e5e);
   addCardinal('S', 180, 0xff5e5e);
   addCardinal('E', 90, 0x4da6ff);
